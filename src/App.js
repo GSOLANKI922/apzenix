@@ -1,23 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import UserList from './component/UserList';
+import Post from './component/Post';
 
 function App() {
+  const [PostList, setPostList] = useState([])
+  const [isEdit, setIsEdit] = useState(false)
+  const [editObj, setEditObj] = useState({
+    title: "",
+    body: "",
+  });
+
+  const [value, setValue] = useState({
+    title: "",
+    body: "",
+  });
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <UserList
+        setPostList={setPostList}
+        PostList={PostList}
+        setEditObj={setEditObj}
+        editObj={editObj}
+        setValue={setValue}
+      />
+      <Post
+        editObj={editObj}
+        setValue={setValue}
+        value={value}
+        PostList={PostList}
+        setPostList={setPostList}
+        setIsEdit={setIsEdit}
+      />
+
     </div>
   );
 }
